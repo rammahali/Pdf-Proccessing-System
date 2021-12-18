@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project3/Home.dart';
-import 'package:project3/PdfViewer.dart';
-import 'package:project3/UserDashboard/UserDashboard.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,8 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:Home(),
+      home: Home(),
     );
   }
 }
-
