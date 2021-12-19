@@ -100,7 +100,7 @@ class _PdfViewerState extends State<PdfViewer> {
     PdfTextExtractor extractor = PdfTextExtractor(document);
 
 //Extract all the text from the document.
-    _text = extractor.extractText();
+    _text = extractor.extractText(layoutText: true);
     setState(() {
       print(_text);
     });

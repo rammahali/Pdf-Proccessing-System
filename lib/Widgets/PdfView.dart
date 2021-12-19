@@ -13,41 +13,36 @@ class PdfView extends StatefulWidget {
 class _PdfViewState extends State<PdfView> {
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
     return Container(
+      width: screenWidth/4,
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
-          color: Colors.grey.shade300, borderRadius: BorderRadius.circular(15)),
+          color: Colors.white60, borderRadius: BorderRadius.circular(8)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/pdf.png"),
-                        fit: BoxFit.fitHeight)),
-              ),
+              Icon(Icons.insert_drive_file,color: Colors.black38,size: 25,),
               SizedBox(
                 width: 10,
               ),
               Text(
                 widget.documentName,
-                style: GoogleFonts.ubuntu(fontSize: 18, color: Colors.black),
+                style: GoogleFonts.ubuntu(fontSize: 16, color: Colors.black38),
               ),
             ],
           ),
           Container(
-            height: 60,
-            width: 60,
+            height: 40,
+            width: 40,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15), color: Colors.indigo),
+                borderRadius: BorderRadius.circular(15), color: Colors.white),
             child: Icon(
               Icons.remove_red_eye,
-              color: Colors.white,
+              color: Colors.deepPurple,
             ),
           ),
         ],

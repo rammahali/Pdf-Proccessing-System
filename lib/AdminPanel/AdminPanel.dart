@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project3/AdminPanel/AdminHome.dart';
+import 'package:project3/AdminPanel/DataSearch.dart';
 import 'package:project3/UserDashboard/HomePage.dart';
 import 'package:project3/UserDashboard/UploadPage.dart';
 import 'package:project3/UserDashboard/UserPdfs.dart';
 
-class UserDashboard extends StatefulWidget {
+class AdminPanel extends StatefulWidget {
 
 
   @override
-  _UserDashboardState createState() => _UserDashboardState();
+  _AdminPanelState createState() => _AdminPanelState();
 }
 
-class _UserDashboardState extends State<UserDashboard> {
+class _AdminPanelState extends State<AdminPanel> {
   final ValueNotifier<int> index = new ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
@@ -90,58 +92,42 @@ class _UserDashboardState extends State<UserDashboard> {
                           ],
                         ),
                       ),
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        height: 75,
-                        width: 180,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.settings,
-                              color: Colors.black54,
-                              size: 25,
+                      SizedBox(height: 10,),
+                      Material(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: (){},
+                          child: Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            height: 75,
+                            width: 180,
+                            decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.supervised_user_circle,
+                                  color: Colors.black54,
+                                  size: 25,
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Text(
+                                  "Users",
+                                  style: GoogleFonts.ubuntu(
+                                      color: Colors.black54, fontSize: 17),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "Account settings",
-                              style: GoogleFonts.ubuntu(
-                                  color: Colors.black54, fontSize: 17),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        height: 75,
-                        width: 180,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.picture_as_pdf,
-                              color: Colors.black54,
-                              size: 25,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              "PDF sample",
-                              style: GoogleFonts.ubuntu(
-                                  color: Colors.black54, fontSize: 17),
-                            ),
-                          ],
-                        ),
-                      ),
+                      SizedBox(height: 10,),
+
                     ],
                   ),
                 ),
@@ -153,18 +139,18 @@ class _UserDashboardState extends State<UserDashboard> {
                           bottomRight: Radius.circular(12),
                           topRight: Radius.circular(12))),
                   child: ValueListenableBuilder(
-                     valueListenable: index,
-                    builder: (context,value,child){
-                       if(index.value==0)
-                         return HomePage(index);
-                       if(index.value==1)
-                         return UploadPage(index);
-                       else
-                       if(index.value==2)
-                         return UserPdfs(index);
-                       else
-                         return HomePage(index);
-                    }
+                      valueListenable: index,
+                      builder: (context,value,child){
+                        if(index.value==0)
+                          return AdminHome(index);
+                        if(index.value==1)
+                          return UploadPage(index);
+                        else
+                        if(index.value==2)
+                          return DataSeacrh(index);
+                        else
+                          return HomePage(index);
+                      }
                   ),
                 )
               ],
