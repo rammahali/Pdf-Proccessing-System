@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project3/AdminPanel/AdminHome.dart';
 import 'package:project3/AdminPanel/DataSearch.dart';
+import 'package:project3/AdminPanel/Users.dart';
+import 'package:project3/AdminPanel/semesterSearch.dart';
 import 'package:project3/UserDashboard/HomePage.dart';
 import 'package:project3/UserDashboard/UploadPage.dart';
 import 'package:project3/UserDashboard/UserPdfs.dart';
@@ -97,7 +99,7 @@ class _AdminPanelState extends State<AdminPanel> {
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: (){},
+                          onTap: (){index.value=3;},
                           child: Container(
                             alignment: Alignment.center,
                             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -144,10 +146,13 @@ class _AdminPanelState extends State<AdminPanel> {
                         if(index.value==0)
                           return AdminHome(index);
                         if(index.value==1)
-                          return UploadPage(index);
+                          return SemesterSearch(index);
                         else
                         if(index.value==2)
                           return DataSeacrh(index);
+                        else
+                        if(index.value==3)
+                          return Users(index);
                         else
                           return HomePage(index);
                       }

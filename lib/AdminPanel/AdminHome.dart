@@ -79,7 +79,7 @@ class _AdminHomeState extends State<AdminHome> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: (){widget.index.value=2;},
+                        onTap: (){widget.index.value=1;},
                         child: Container(
                           alignment: Alignment.center,
                           height: 40,
