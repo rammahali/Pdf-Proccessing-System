@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project3/AdminPanel/AdminPanel.dart';
 import 'package:project3/Home.dart';
 import 'package:project3/PdfViewer.dart';
+import 'package:project3/TestProccessing.dart';
+import 'package:project3/UserDashboard/PDFVIEWER.dart';
 import 'package:project3/UserDashboard/UserDashboard.dart';
 
 void main() {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AdminPanel(),
+      home: TestProcessing(),
     );
   }
 }

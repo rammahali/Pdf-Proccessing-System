@@ -173,6 +173,81 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
+        ),
+        SizedBox(height: 20,),
+        Row(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 13, vertical: 30),
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.teal,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.remove_red_eye,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Search your pdf files",
+                        style: GoogleFonts.aBeeZee(
+                            color: Colors.white, fontSize: 20),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                          child: Text(
+                            "Search for certain pdf files you have uploaded using certain data",
+                            style: TextStyle(
+                                color: Colors.white, fontSize: 15),
+                          ))
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: (){widget.index.value=2;},
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 40,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                              BorderRadius.circular(15)),
+                          child: Text(
+                            "View",
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+          ],
         )
       ],
     );
