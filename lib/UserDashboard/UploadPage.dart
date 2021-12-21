@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class UploadPage extends StatefulWidget {
   final ValueNotifier<int> index;
+
   UploadPage(this.index);
+
   @override
   _UploadPageState createState() => _UploadPageState();
 }
@@ -14,6 +16,7 @@ class _UploadPageState extends State<UploadPage> {
   bool pdfSelected = false;
   bool picking = false;
   FilePickerResult? filePickerResult;
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;

@@ -4,7 +4,9 @@ import 'package:project3/model.dart';
 
 class Processor {
   String pdfString;
+
   Processor(this.pdfString);
+
   late final String formattedPdfText;
   late final String projectType;
   late final String counselor;

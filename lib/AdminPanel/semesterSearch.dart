@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SemesterSearch extends StatefulWidget {
   final ValueNotifier<int> index;
+
   SemesterSearch(this.index);
 
   @override
