@@ -1,5 +1,6 @@
 import 'package:postgrest/postgrest.dart';
 
+import '../UserData.dart';
 import '../model.dart';
 
 
@@ -27,6 +28,7 @@ Future<User> login(String email, String password, PostgrestClient db) async {
     return User(
       id: response.data[0]['id'],
       name: response.data[0]['name'],
+      privilege: response.data[0]['privilege']
     );
   }
 }
@@ -48,15 +50,15 @@ Future<User> createUser(User user, PostgrestClient db) async {
 }
 
 /// Returns list of projects with the limits specified in [query]
-Future<List> getProjects(PostgrestClient db, Project project, User user) async {
+Future<List> getProjects(PostgrestClient db, Project project) async {
   const selectString =
       "id, title, course, keywords:project_keyword!inner(keyword) ,summary, submission_date, authors:student!inner(*), advisor:project_personnel_id_fk!inner(title, first_name, last_name), jury:personnel!project_jury!inner(title, first_name, last_name)";
 
   var query = db.from('project').select(selectString);
 
   // only return user's own uploaded projects
-  if (user.privilege == 'user') {
-    query.eq('uploader_id', user.id);
+  if (UserData.privilege == 'user') {
+    query.eq('uploader_id', UserData.id);
   }
 
   // all projects with ali elbashir as author

@@ -1,6 +1,9 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:postgrest/postgrest.dart';
+import 'package:project3/model.dart';
+import 'package:project3/util/database.dart';
 
 class DataSeacrh extends StatefulWidget {
   final ValueNotifier<int> index;
@@ -12,6 +15,26 @@ class DataSeacrh extends StatefulWidget {
 }
 
 class _DataSeacrhState extends State<DataSeacrh> {
+  List<String> authors = [];
+  Project projectQuery = Project();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    () async {
+      final _db = PostgrestClient('http://127.0.0.1:3000');
+      final students = await _db.from('student').select('id').execute();
+      if (students.hasError) {
+        throw Exception("Can't obtain students");
+      }
+      for (var student in students.data) {
+        authors.add(student['id'].toString());
+      }
+
+    }();
+  }
+
   var ListContainerColor = const Color(0xffC1E1C1);
 
   @override
@@ -72,13 +95,14 @@ class _DataSeacrhState extends State<DataSeacrh> {
                         width: screenWidth / 6,
                         child: DropdownSearch<String>.multiSelection(
                           mode: Mode.MENU,
-                          items: [
-                            "Rammah Ali mustafa",
-                            "Ali Elbashir Mohammed Osman ",
-                            "Seed ALrasa Malik ALmanasa",
-                            'Bro min Ombada'
-                          ],
-                          onChanged: print,
+                          items: authors,
+                          onChanged: (values) {
+                            final newAuthors = <Student>[];
+                            for (var value in values) {
+                              newAuthors.add(Student(id: int.parse(value)));
+                            }
+                            projectQuery.authors = newAuthors;
+                          },
                         ),
                       ),
                     ],
@@ -236,7 +260,12 @@ class _DataSeacrhState extends State<DataSeacrh> {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      final db = PostgrestClient('http://127.0.0.1:3000');
+                      List projects = await getProjects(db, projectQuery);
+                      print(projects);
+
+                    },
                     child: Container(
                       alignment: Alignment.center,
                       height: 40,

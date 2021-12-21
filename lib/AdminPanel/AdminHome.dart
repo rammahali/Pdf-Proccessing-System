@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project3/UserData.dart';
 
 class AdminHome extends StatefulWidget {
   final ValueNotifier<int> index;
@@ -19,7 +20,7 @@ class _AdminHomeState extends State<AdminHome> {
         Row(
           children: [
             Text(
-              "Hi Rammah ,",
+              "Hi ${UserData.name} ,",
               style: GoogleFonts.ubuntu(
                   color: Colors.black54,
                   fontSize: 30,

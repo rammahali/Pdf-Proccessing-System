@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:postgrest/postgrest.dart';
+import 'package:project3/AdminPanel/AdminPanel.dart';
 import 'package:project3/UserDashboard/UserDashboard.dart';
 import 'package:project3/UserData.dart';
 import 'package:project3/util/database.dart';
@@ -190,11 +191,19 @@ class _HomeState extends State<Home> {
                           PostgrestClient("http://127.0.0.1:3000"));
                       UserData.id = user.id!;
                       UserData.name = user.name!;
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UserDashboard()),
-                      );
+                      UserData.privilege = user.privilege!;
+                      if (user.privilege == "admin") {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => AdminPanel()),
+                        );
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserDashboard()),
+                        );
+                      }
                     } catch (error) {
                       setState(() {
                         emailFound = false;
