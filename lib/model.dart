@@ -40,13 +40,14 @@ class Student extends Person {
 }
 
 class User {
+  int? id;
   String? name;
   String? email;
   String? password;
   String? privilege;
   bool? deleted;
 
-  User({this.name, this.email, this.password, this.privilege, this.deleted});
+  User({this.id, this.name, this.email, this.password, this.privilege, this.deleted});
 }
 
 class Personnel extends Person {
