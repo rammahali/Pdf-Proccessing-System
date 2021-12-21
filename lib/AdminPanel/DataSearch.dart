@@ -18,6 +18,10 @@ class _DataSeacrhState extends State<DataSeacrh> {
   List<String> authors = [];
   Project projectQuery = Project();
 
+  List projects = [];
+
+  List<DataRow> tableRows = [];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -31,7 +35,6 @@ class _DataSeacrhState extends State<DataSeacrh> {
       for (var student in students.data) {
         authors.add(student['id'].toString());
       }
-
     }();
   }
 
@@ -262,9 +265,23 @@ class _DataSeacrhState extends State<DataSeacrh> {
                   child: InkWell(
                     onTap: () async {
                       final db = PostgrestClient('http://127.0.0.1:3000');
-                      List projects = await getProjects(db, projectQuery);
-                      print(projects);
+                      projects = await getProjects(db, projectQuery);
+                      var rows = projects.map((project) {
+                        var row = DataRow(cells: [
+                          DataCell(Text(project['authors'].map((author) => author['first_name'] + ' ' +  author['last_name']).join(', '))),
+                          DataCell(Text(project['title'])),
+                          DataCell(Text(project['course'])),
+                          DataCell(Text(project['submission_date'])),
+                          DataCell(Text
+                            (project['keywords'].map((keyword) => keyword['keyword']).join(', ')
+                          )),
+                        ]);
+                        return row;
+                      }).toList();
 
+                      setState(() {
+                        tableRows = rows;
+                      });
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -378,40 +395,7 @@ class _DataSeacrhState extends State<DataSeacrh> {
                         ],
                       ),
                     ),
-                  ], rows: [
-                    DataRow(onSelectChanged: (selected) {}, cells: [
-                      DataCell(
-                        Text(
-                          "Rammah ali mustafa",
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ),
-                      DataCell(
-                        Text(
-                          "Pdf processing system",
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ),
-                      DataCell(
-                        Text(
-                          "Bittirme projesi",
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ),
-                      DataCell(
-                        Text(
-                          "Guz 2020-2021",
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ),
-                      DataCell(
-                        Text(
-                          "Pdf,data , users, processing,",
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ),
-                    ]),
-                  ]),
+                  ], rows: tableRows),
                 ),
               ],
             ),
