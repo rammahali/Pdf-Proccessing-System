@@ -45,9 +45,18 @@ class _UploadPageState extends State<UploadPage> {
     return processing
         ? Container(
       child: Center(
-        child: Text(
-          "Processing the pdf file",
-          style: TextStyle(color: Colors.black54, fontSize: 18),
+        child: Container(
+          height: 100,
+          child: Column(
+            children: [
+              CircularProgressIndicator(color: Colors.black54,),
+              SizedBox(height: 20,),
+              Text(
+                "Processing the pdf file",
+                style: TextStyle(color: Colors.black54, fontSize: 18),
+              ),
+            ],
+          ),
         ),
       ),
     )
@@ -301,6 +310,9 @@ class _UploadPageState extends State<UploadPage> {
   }
 
   Future<void> extractText() async {
+    setState(() {
+      processing =true;
+    });
     User user =
     new User(name: "Rammah", email: "rammah@gmail.com", password: "test");
     print("Extracting text........");
@@ -321,6 +333,10 @@ class _UploadPageState extends State<UploadPage> {
     Project project = await processor.processText();
 
     insertProject(project);
+
+    setState(() {
+      processing =false;
+    });
   }
 
 
