@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DataSeacrh extends StatefulWidget {
-  ValueNotifier<int> index;
+  final ValueNotifier<int> index;
   DataSeacrh(this.index);
 
   @override

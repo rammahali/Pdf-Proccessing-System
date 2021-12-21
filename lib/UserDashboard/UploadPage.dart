@@ -1,10 +1,9 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project3/UserDashboard/UserDashboard.dart';
 
 class UploadPage extends StatefulWidget {
-  ValueNotifier<int> index;
+  final ValueNotifier<int> index;
    UploadPage(this.index);
   @override
   _UploadPageState createState() => _UploadPageState();
