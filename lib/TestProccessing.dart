@@ -44,7 +44,6 @@ class _TestProcessingState extends State<TestProcessing> {
 
 //Extract all the text from the document.
     String text = extractor.extractText(layoutText: true);
-    print(text);
 
     print("Starting text proccessing......");
     Processor processor = new Processor(text);

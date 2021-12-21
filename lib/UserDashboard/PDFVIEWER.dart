@@ -113,7 +113,7 @@ class _PDFVIEWERState extends State<PDFVIEWER> {
                       SizedBox(height: 20,),
                       Row(
                         children: [
-                          cardWidget(Icons.account_box_rounded, Colors.white, Colors.deepPurple, "Author", "Rammah ali mustafa"),
+                          cardWidget(Icons.account_box_rounded ,Colors.white, Colors.deepPurple, "Author", "Rammah ali mustafa"),
                           SizedBox(width: 15,),
                           cardWidget(Icons.assignment_rounded, Colors.white, Colors.deepOrange, "Title", "Pdf proccessing system"),
                           SizedBox(width: 15,),
