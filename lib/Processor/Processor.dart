@@ -199,7 +199,7 @@ class Processor {
     if(month>=9 || month <=2) {
       semester = "Güz $year-${year+1}";
     }
-    if(month>=3 || month <=7) {
+    else{
       semester = "Bahar ${year-1}-$year";
     }
   }
