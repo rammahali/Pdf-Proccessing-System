@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:postgrest/postgrest.dart';
+import 'package:project3/UserDashboard/UserDashboard.dart';
+import 'package:project3/UserData.dart';
+import 'package:project3/util/database.dart';
+
+import 'model.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -9,6 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
   bool emailFound = false;
 
   @override
@@ -77,6 +85,7 @@ class _HomeState extends State<Home> {
             height: 25,
           ),
           TextField(
+            controller: email,
             decoration: InputDecoration(hintText: "Email address"),
           ),
           SizedBox(
@@ -153,7 +162,7 @@ class _HomeState extends State<Home> {
           Row(
             children: [
               Text(
-                "Welcome back , rammah",
+                "Welcome back !",
                 style: TextStyle(color: Colors.black87, fontSize: 18),
               )
             ],
@@ -162,6 +171,7 @@ class _HomeState extends State<Home> {
             height: 25,
           ),
           TextField(
+            controller: password,
             obscureText: true,
             decoration: InputDecoration(hintText: "Password"),
           ),
@@ -174,7 +184,41 @@ class _HomeState extends State<Home> {
               Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: null,
+                  onTap:() async {
+                   try{
+                    User user =  await login(email.text, password.text, PostgrestClient("http://127.0.0.1:3000"));
+                    UserData.id = user.id!;
+                    UserData.name = user.name!;
+                    showBottomSheet(context: context,
+                        builder: (context) {
+                          return Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            height: 80, width: MediaQuery.of(context).size.width,
+                            color: Colors.green,
+                            child: Text("Login successful" , style: TextStyle(color: Colors.white, fontSize: 17),),
+                          );
+                        });
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => UserDashboard()),
+                    );
+                   }
+                   catch(error){
+                     setState(() {
+                       emailFound = false;
+                     });
+                     showBottomSheet(context: context,
+                         builder: (context) {
+                       return Container(
+                         padding: EdgeInsets.symmetric(horizontal: 10),
+                         height: 80, width: MediaQuery.of(context).size.width,
+                         color: Colors.pink,
+                         child: Text("Wrong email or password" , style: TextStyle(color: Colors.white, fontSize: 17),),
+                       );
+                         });
+                   }
+
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 40,
