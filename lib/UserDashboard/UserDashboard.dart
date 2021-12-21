@@ -5,8 +5,6 @@ import 'package:project3/UserDashboard/UploadPage.dart';
 import 'package:project3/UserDashboard/UserPdfs.dart';
 
 class UserDashboard extends StatefulWidget {
-
-
   @override
   _UserDashboardState createState() => _UserDashboardState();
 }
@@ -62,7 +60,6 @@ class _UserDashboardState extends State<UserDashboard> {
                       ),
                       SizedBox(
                         height: 25,
-
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -153,25 +150,20 @@ class _UserDashboardState extends State<UserDashboard> {
                           bottomRight: Radius.circular(12),
                           topRight: Radius.circular(12))),
                   child: ValueListenableBuilder(
-                     valueListenable: index,
-                    builder: (context,value,child){
-                       if(index.value==0)
-                         return HomePage(index);
-                       if(index.value==1)
-                         return UploadPage(index);
-                       else
-                       if(index.value==2)
-                         return UserPdfs(index);
-                       else
-                         return HomePage(index);
-                    }
-                  ),
+                      valueListenable: index,
+                      builder: (context, value, child) {
+                        if (index.value == 0) return HomePage(index);
+                        if (index.value == 1)
+                          return UploadPage(index);
+                        else if (index.value == 2)
+                          return UserPdfs(index);
+                        else
+                          return HomePage(index);
+                      }),
                 )
               ],
             ),
           ),
         ));
   }
-
-
 }

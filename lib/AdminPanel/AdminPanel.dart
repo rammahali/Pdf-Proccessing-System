@@ -7,8 +7,6 @@ import 'package:project3/AdminPanel/semesterSearch.dart';
 import 'package:project3/UserDashboard/HomePage.dart';
 
 class AdminPanel extends StatefulWidget {
-
-
   @override
   _AdminPanelState createState() => _AdminPanelState();
 }
@@ -64,7 +62,6 @@ class _AdminPanelState extends State<AdminPanel> {
                       ),
                       SizedBox(
                         height: 25,
-
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -92,12 +89,16 @@ class _AdminPanelState extends State<AdminPanel> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Material(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: (){index.value=3;},
+                          onTap: () {
+                            index.value = 3;
+                          },
                           child: Container(
                             alignment: Alignment.center,
                             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -126,8 +127,9 @@ class _AdminPanelState extends State<AdminPanel> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10,),
-
+                      SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
                 ),
@@ -140,27 +142,21 @@ class _AdminPanelState extends State<AdminPanel> {
                           topRight: Radius.circular(12))),
                   child: ValueListenableBuilder(
                       valueListenable: index,
-                      builder: (context,value,child){
-                        if(index.value==0)
-                          return AdminHome(index);
-                        if(index.value==1)
+                      builder: (context, value, child) {
+                        if (index.value == 0) return AdminHome(index);
+                        if (index.value == 1)
                           return SemesterSearch(index);
-                        else
-                        if(index.value==2)
+                        else if (index.value == 2)
                           return DataSeacrh(index);
-                        else
-                        if(index.value==3)
+                        else if (index.value == 3)
                           return Users(index);
                         else
                           return HomePage(index);
-                      }
-                  ),
+                      }),
                 )
               ],
             ),
           ),
         ));
   }
-
-
 }

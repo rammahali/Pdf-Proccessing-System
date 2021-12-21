@@ -13,14 +13,14 @@ class Project {
 
   Project(
       {this.advisor,
-        this.jury,
-        this.authors,
-        this.uploader,
-        this.course,
-        this.title,
-        this.summary,
-        this.submissionDate,
-        this.keywords});
+      this.jury,
+      this.authors,
+      this.uploader,
+      this.course,
+      this.title,
+      this.summary,
+      this.submissionDate,
+      this.keywords});
 }
 
 class Person {

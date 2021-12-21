@@ -16,7 +16,7 @@ class _TestProcessingState extends State<TestProcessing> {
     return Scaffold(
       body: Center(
         child: GestureDetector(
-          onTap: (){
+          onTap: () {
             extractText();
           },
           child: Container(
@@ -24,18 +24,21 @@ class _TestProcessingState extends State<TestProcessing> {
             width: 100,
             height: 80,
             color: Colors.teal,
-            child: Text("Extract text",style: TextStyle(color: Colors.white, fontSize: 16),),
+            child: Text(
+              "Extract text",
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
           ),
         ),
       ),
     );
   }
 
-  Future <void> extractText() async{
+  Future<void> extractText() async {
     print("Extracting text........");
     //Load an existing PDF document.
     PdfDocument document =
-    PdfDocument(inputBytes: await _readDocumentData('sample.pdf'));
+        PdfDocument(inputBytes: await _readDocumentData('sample.pdf'));
 
 //Create a new instance of the PdfTextExtractor.
     PdfTextExtractor extractor = PdfTextExtractor(document);

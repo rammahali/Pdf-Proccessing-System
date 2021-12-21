@@ -11,7 +11,9 @@ class _TableResultState extends State<TableResult> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14,),
+      padding: EdgeInsets.symmetric(
+        horizontal: 14,
+      ),
       height: 80,
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -19,9 +21,7 @@ class _TableResultState extends State<TableResult> {
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
-        children: [
-
-        ],
+        children: [],
       ),
     );
   }

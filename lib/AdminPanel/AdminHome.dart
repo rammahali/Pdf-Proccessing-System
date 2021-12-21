@@ -14,7 +14,6 @@ class _AdminHomeState extends State<AdminHome> {
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-
       children: [
         Row(
           children: [
@@ -33,8 +32,7 @@ class _AdminHomeState extends State<AdminHome> {
         Row(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 13, vertical: 30),
+              padding: EdgeInsets.symmetric(horizontal: 13, vertical: 30),
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -66,10 +64,9 @@ class _AdminHomeState extends State<AdminHome> {
                     children: [
                       Flexible(
                           child: Text(
-                            "View all the pdf files uploaded in specific semester",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 15),
-                          ))
+                        "View all the pdf files uploaded in specific semester",
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ))
                     ],
                   ),
                   SizedBox(
@@ -79,20 +76,20 @@ class _AdminHomeState extends State<AdminHome> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: (){widget.index.value=1;},
+                        onTap: () {
+                          widget.index.value = 1;
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           height: 40,
                           width: 80,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                              BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15)),
                           child: Text(
                             "Search",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 14),
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 14),
                           ),
                         ),
                       ),
@@ -101,10 +98,11 @@ class _AdminHomeState extends State<AdminHome> {
                 ],
               ),
             ),
-            SizedBox(width: 20,),
+            SizedBox(
+              width: 20,
+            ),
             Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 13, vertical: 30),
+              padding: EdgeInsets.symmetric(horizontal: 13, vertical: 30),
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -136,10 +134,9 @@ class _AdminHomeState extends State<AdminHome> {
                     children: [
                       Flexible(
                           child: Text(
-                            "Use specific details to pick certain pdf file such as writer name , or student numbers , etc",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 15),
-                          ))
+                        "Use specific details to pick certain pdf file such as writer name , or student numbers , etc",
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ))
                     ],
                   ),
                   SizedBox(
@@ -149,20 +146,20 @@ class _AdminHomeState extends State<AdminHome> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: (){widget.index.value=2;},
+                        onTap: () {
+                          widget.index.value = 2;
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           height: 40,
                           width: 80,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                              BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15)),
                           child: Text(
                             "Seacrh",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 14),
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 14),
                           ),
                         ),
                       ),
