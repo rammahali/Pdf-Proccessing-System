@@ -15,7 +15,7 @@ class _PdfViewState extends State<PdfView> {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      width: screenWidth/4,
+      width: screenWidth / 4,
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
@@ -25,7 +25,11 @@ class _PdfViewState extends State<PdfView> {
         children: [
           Row(
             children: [
-              Icon(Icons.insert_drive_file,color: Colors.black38,size: 25,),
+              Icon(
+                Icons.insert_drive_file,
+                color: Colors.black38,
+                size: 25,
+              ),
               SizedBox(
                 width: 10,
               ),

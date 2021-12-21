@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
-  ValueNotifier<int> index;
+  final ValueNotifier<int> index;
   HomePage(this.index);
 
   @override
@@ -32,8 +32,7 @@ class _HomePageState extends State<HomePage> {
         Row(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 13, vertical: 30),
+              padding: EdgeInsets.symmetric(horizontal: 13, vertical: 30),
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -65,10 +64,9 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Flexible(
                           child: Text(
-                            "This sytem is degsined to help the teachers to analayze thier students pdf files , all you need to do is to upload a pdf and the system will extract all the important details",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 15),
-                          ))
+                        "This sytem is degsined to help the teachers to analayze thier students pdf files , all you need to do is to upload a pdf and the system will extract all the important details",
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ))
                     ],
                   ),
                   SizedBox(
@@ -78,20 +76,20 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: (){widget.index.value=1;},
+                        onTap: () {
+                          widget.index.value = 1;
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           height: 40,
                           width: 80,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                              BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15)),
                           child: Text(
                             "Upload",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 14),
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 14),
                           ),
                         ),
                       ),
@@ -104,8 +102,7 @@ class _HomePageState extends State<HomePage> {
               width: 20,
             ),
             Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 13, vertical: 30),
+              padding: EdgeInsets.symmetric(horizontal: 13, vertical: 30),
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -137,10 +134,9 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Flexible(
                           child: Text(
-                            "View the PDF files that you have already upload to the system",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 15),
-                          ))
+                        "View the PDF files that you have already upload to the system",
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ))
                     ],
                   ),
                   SizedBox(
@@ -150,20 +146,20 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: (){widget.index.value=2;},
+                        onTap: () {
+                          widget.index.value = 2;
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           height: 40,
                           width: 80,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                              BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15)),
                           child: Text(
                             "View",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 14),
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 14),
                           ),
                         ),
                       ),
@@ -174,12 +170,13 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         Row(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 13, vertical: 30),
+              padding: EdgeInsets.symmetric(horizontal: 13, vertical: 30),
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -211,10 +208,9 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Flexible(
                           child: Text(
-                            "Search for certain pdf files you have uploaded using certain data",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 15),
-                          ))
+                        "Search for certain pdf files you have uploaded using certain data",
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ))
                     ],
                   ),
                   SizedBox(
@@ -224,20 +220,20 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: (){widget.index.value=2;},
+                        onTap: () {
+                          widget.index.value = 2;
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           height: 40,
                           width: 80,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                              BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15)),
                           child: Text(
                             "View",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 14),
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 14),
                           ),
                         ),
                       ),
@@ -246,7 +242,6 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-
           ],
         )
       ],
