@@ -31,7 +31,7 @@ class Processor {
     lines  = ls.convert(formattedPdfText);
       await _getProjectType();
       await _getTitle();
-      await _getAuthors();
+      await _getAuthorsNumber();
       await _getCounselor();
       await _getJuris();
       await _getSemester();
@@ -42,6 +42,7 @@ class Processor {
     print("counselor is $counselor found on line number : ${lineData.counselorLine}");
     print("juris are $juri found on line number : ${lineData.firstJuriLine}");
     print("semester is $semester found on line number : ${lineData.semesterLine}");
+    print("student full list is $studentList found on line number : ${lineData.semesterLine}");
   }
 
   Future <void> _getProjectType() async {
@@ -62,7 +63,7 @@ class Processor {
      projectTitle = lines[lineData.titleLine];
   }
 
-  Future <void> _getAuthors() async{
+  Future <void> _getAuthorsNumber() async{
     // authors always comes after the project title as specified on the format
      lineData.authorsLine = lineData.titleLine+1;
 
@@ -128,22 +129,54 @@ class Processor {
     }
   }
 
-  Future <void> _getAuthosStudentNumbers() async {
-    int authorsCount = authors.length;
+  Future <void> _getAuthorsData() async {
     for(int i = 0; i<lines.length;i++) {
       if(lines[i].contains("Öğrenci No") && lines[i+1].contains("Adı Soyadı")) {
         var studentNumberLine = lines[i];
         var nameLine = lines[i+1];
         var studentNumberGetter = studentNumberLine.split(": ");
         var studentNumber = studentNumberGetter.last;
-        //var
+        var nameGetter = nameLine.split(": ");
+        var nameSurname = getNameSurname(nameGetter.last);
+        var studentFirstName =  nameSurname.first;
+        var studentSurname = nameSurname.last;
+        Student student = new Student();
+        student.id = int.parse(studentNumber);
+        student.firstName = studentFirstName;
+        student.lastName = studentSurname;
+        if(studentNumber[5]=="1")
+          {
+            student.educationType = EducationType.birinciOgretim;
+          }
+        else {
+          student.educationType = EducationType.ikinciOgretim;
+        }
+        studentList.add(student);
+
+        if(studentList.length == authors.length){
+          break;
+        }
       }
     }
 
-    for(String author in authors) {
+  }
+}
 
+
+List<String> getNameSurname(String name){
+  var extractor = name.split(" ");
+  if(extractor.length==2) {
+    return extractor;
+  }
+  else {
+    var firstname = "";
+    for(int i=0;i<extractor.length-1;i++){
+      firstname = firstname+extractor[i];
     }
+    var lastName = extractor.last;
 
+    var finalNameList =[firstname,lastName];
+    return finalNameList;
   }
 }
 

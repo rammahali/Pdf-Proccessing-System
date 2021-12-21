@@ -6,7 +6,7 @@ enum EducationType{
 class Project {
   late final Personnel advisor; // danisman
   late final List<Personnel> jury; // juri
-  late final Student author;
+  late final List<Student> authors;
   late final User uploader; // yukleyen
   late final String course; // ders [arastirma problemleri, bitirme projesi]
   late final String title; // baslik
