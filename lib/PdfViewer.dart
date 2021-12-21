@@ -13,6 +13,7 @@ class PdfViewer extends StatefulWidget {
 class _PdfViewerState extends State<PdfViewer> {
   String _text = "Loading file ......";
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;

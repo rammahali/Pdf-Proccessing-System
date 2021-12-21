@@ -12,14 +12,14 @@ alter type education_type owner to postgres;
 
 create table app_user
 (
-    id          serial
+    id        serial
         constraint user_pk
             primary key,
-    name      varchar                                            not null,
-    email     varchar                                            not null,
-    password  varchar                                            not null,
-    privilege privilege default 'user'::privilege                not null,
-    deleted   boolean   default false                            not null
+    name      varchar                             not null,
+    email     varchar                             not null,
+    password  varchar                             not null,
+    privilege privilege default 'user'::privilege not null,
+    deleted   boolean   default false             not null
 );
 
 alter table app_user

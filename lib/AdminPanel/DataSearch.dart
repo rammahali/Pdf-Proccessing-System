@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DataSeacrh extends StatefulWidget {
   final ValueNotifier<int> index;
+
   DataSeacrh(this.index);
 
   @override
