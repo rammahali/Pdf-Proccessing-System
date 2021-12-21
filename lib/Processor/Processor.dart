@@ -35,6 +35,7 @@ class Processor {
       await _getCounselor();
       await _getJuris();
       await _getSemester();
+      await _getAuthorsData();
 
      print("project type is $projectType found on line number : ${lineData.projectTypeLine}");
     print("project title is $projectTitle found on line number : ${lineData.titleLine}");
@@ -152,7 +153,11 @@ class Processor {
           student.educationType = EducationType.ikinciOgretim;
         }
         studentList.add(student);
-
+       print("-------------------------------- TEST BROO-----------------------------------");
+         print(student.firstName);
+        print(student.lastName);
+        print(student.id);
+        print(student.educationType);
         if(studentList.length == authors.length){
           break;
         }
