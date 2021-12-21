@@ -5,8 +5,6 @@ import 'package:project3/AdminPanel/DataSearch.dart';
 import 'package:project3/AdminPanel/Users.dart';
 import 'package:project3/AdminPanel/semesterSearch.dart';
 import 'package:project3/UserDashboard/HomePage.dart';
-import 'package:project3/UserDashboard/UploadPage.dart';
-import 'package:project3/UserDashboard/UserPdfs.dart';
 
 class AdminPanel extends StatefulWidget {
 
