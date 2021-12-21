@@ -8,16 +8,9 @@ PostgrestClient connect() {
   return PostgrestClient(url);
 }
 
-void insertUser(PostgrestClient db, Map user) async {
-  var response = await db.from('app_user').insert([user]).execute();
 
-  if (response.hasError) {
-    throw Exception('Error while inserting user');
-  }
-}
-
-void getUsers(PostgrestClient db) async {
-  var response = await db.from('app_user').select().execute();
+Future<void> getUsers(PostgrestClient db) async {
+  var response = await db.from('app_user').select().eq('deleted', false).execute();
 
   if (response.hasError) {
     throw Exception('Error while inserting user');
@@ -41,19 +34,15 @@ Future<User> login(String email, String password, PostgrestClient db) async {
 Future<User> createUser(User user, PostgrestClient db) async {
   final response = await db.from('app_user').insert([{
     'name': user.name,
-
+    'email': user.email,
+    'password': user.password,
+    'privilege': user.privilege ?? 'user'
   }]).execute();
-  if (response.count == 0) {
-    throw Exception('user not found');
-  } else {
-    return User(
-      id: response.data[0]['id'],
-      name: response.data[0]['name'],
-    );
-  }
 
   if (response.hasError) {
     throw Exception('Error while inserting user');
   }
+
+  user.id = response.data[0]['id'];
   return user;
 }
