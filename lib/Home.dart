@@ -184,40 +184,23 @@ class _HomeState extends State<Home> {
               Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap:() async {
-                   try{
-                    User user =  await login(email.text, password.text, PostgrestClient("http://127.0.0.1:3000"));
-                    UserData.id = user.id!;
-                    UserData.name = user.name!;
-                    showBottomSheet(context: context,
-                        builder: (context) {
-                          return Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            height: 80, width: MediaQuery.of(context).size.width,
-                            color: Colors.green,
-                            child: Text("Login successful" , style: TextStyle(color: Colors.white, fontSize: 17),),
-                          );
-                        });
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => UserDashboard()),
-                    );
-                   }
-                   catch(error){
-                     setState(() {
-                       emailFound = false;
-                     });
-                     showBottomSheet(context: context,
-                         builder: (context) {
-                       return Container(
-                         padding: EdgeInsets.symmetric(horizontal: 10),
-                         height: 80, width: MediaQuery.of(context).size.width,
-                         color: Colors.pink,
-                         child: Text("Wrong email or password" , style: TextStyle(color: Colors.white, fontSize: 17),),
-                       );
-                         });
-                   }
-
+                  onTap: () async {
+                    try {
+                      User user = await login(email.text, password.text,
+                          PostgrestClient("http://127.0.0.1:3000"));
+                      UserData.id = user.id!;
+                      UserData.name = user.name!;
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UserDashboard()),
+                      );
+                    } catch (error) {
+                      setState(() {
+                        emailFound = false;
+                      });
+                      print(error);
+                    }
                   },
                   child: Container(
                     alignment: Alignment.center,

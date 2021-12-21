@@ -1,9 +1,9 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:postgrest/postgrest.dart';
 import 'package:project3/Processor/Processor.dart';
+import 'package:project3/UserData.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../model.dart';
@@ -306,7 +306,7 @@ class _UploadPageState extends State<UploadPage> {
     print("Extracting text........");
     //Load an existing PDF document.
     PdfDocument document =
-    PdfDocument(inputBytes: await _readDocumentData('sample.pdf'));
+    PdfDocument(inputBytes: filePickerResult.files.first.bytes);
 
 //Create a new instance of the PdfTextExtractor.
     PdfTextExtractor extractor = PdfTextExtractor(document);
@@ -323,10 +323,6 @@ class _UploadPageState extends State<UploadPage> {
     insertProject(project);
   }
 
-  Future<List<int>> _readDocumentData(String name) async {
-    final ByteData data = await rootBundle.load('assets/$name');
-    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-  }
 
   Future<void> pickPDF() async {
     setState(() {
@@ -382,15 +378,13 @@ class _UploadPageState extends State<UploadPage> {
             : '2. ogretim',
       });
     }
-    var students;
-    // if doesn't exist, create
     try {
-      students = await _db.from('student').upsert(authors, onConflict: 'id').execute();
+      await _db.from('student').upsert(authors, onConflict: 'id').execute();
     } on Exception {}
 
     var projectQuery = {
       'advisor_id': faculty.data[0]['id'],
-      'uploader_id': user.id ?? 1,
+      'uploader_id': UserData.id,
       'course': project.course,
       'title': project.title,
       'summary': project.summary,
