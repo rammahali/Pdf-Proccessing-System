@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:project3/Processor/Processor.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
+import 'model.dart';
+
 class TestProcessing extends StatefulWidget {
   const TestProcessing({Key? key}) : super(key: key);
 
@@ -35,6 +37,7 @@ class _TestProcessingState extends State<TestProcessing> {
   }
 
   Future<void> extractText() async {
+    User user = new User(name: "Rammah",email: "rammah@gmail.com",password: "test");
     print("Extracting text........");
     //Load an existing PDF document.
     PdfDocument document =
@@ -49,7 +52,7 @@ class _TestProcessingState extends State<TestProcessing> {
     String text = extractor.extractText(layoutText: true);
 
     print("Starting text proccessing......");
-    Processor processor = new Processor(text);
+    Processor processor = new Processor(text,user);
     processor.processText();
   }
 

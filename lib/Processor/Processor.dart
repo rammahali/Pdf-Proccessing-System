@@ -4,8 +4,8 @@ import 'package:project3/model.dart';
 
 class Processor {
   String pdfString;
-
-  Processor(this.pdfString);
+  User user;
+  Processor(this.pdfString,this.user);
 
   late final String formattedPdfText;
   late final String projectType;
@@ -17,16 +17,17 @@ class Processor {
   var authors = [];
   var authorsStudentNumbers = [];
   var juri = [];
-  var keywords = [];
+  List<String> keywords = [];
   List<Student> studentList = [];
-
+  late  Project project ;
   Personnel danisman = new Personnel();
   List<Personnel> juriDataList = [];
 
   // -1 means not detected yet
   LineData lineData = LineData(-1, -1, -1, -1, -1, -1, -1, -1);
 
-  Future<void> processText() async {
+
+  Future<Project> processText() async {
     // removing all the unnecessary spacing
     formattedPdfText =
         pdfString.replaceAll(new RegExp(r'(?:[\t ]*(?:\r?\n|\r))+'), '\n');
@@ -56,6 +57,8 @@ class Processor {
         "smuuaey is $summary found on line number : ${lineData.semesterLine}");
     print(
         "Keywords are is $keywords found on line number : ${lineData.keyWordsLine}");
+     project = new Project(advisor: danisman,jury:juriDataList,authors:studentList,course: projectType,title: projectTitle,summary: summary,submissionDate: semester,keywords: keywords ,uploader: this.user );
+     return project;
   }
 
   Future<void> _getProjectType() async {

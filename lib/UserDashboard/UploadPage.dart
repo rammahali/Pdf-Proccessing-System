@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project3/Processor/Processor.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 class UploadPage extends StatefulWidget {
   final ValueNotifier<int> index;
@@ -15,12 +20,15 @@ class _UploadPageState extends State<UploadPage> {
   String pdfName = "";
   bool pdfSelected = false;
   bool picking = false;
-  FilePickerResult? filePickerResult;
+  late FilePickerResult filePickerResult;
+  bool processing= false;
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    return ListView(
+    return processing ?Container(
+      child: Center(child: Text("Processing the pdf file",style: TextStyle(color: Colors.black54,fontSize: 18),),),
+    ):ListView(
       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 60),
       children: [
         Row(
@@ -239,16 +247,19 @@ class _UploadPageState extends State<UploadPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    height: 40,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Text(
-                      "Upload",
-                      style: TextStyle(color: Colors.black, fontSize: 14),
+                  InkWell(
+                    onTap:extractText,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 40,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Text(
+                        "Upload",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
                     ),
                   ),
                 ],
@@ -261,6 +272,30 @@ class _UploadPageState extends State<UploadPage> {
         ),
       ],
     );
+  }
+
+
+  Future<void> extractText() async {
+    print("Extracting text........");
+    //Load an existing PDF document.
+    PdfDocument document =
+    PdfDocument(inputBytes:filePickerResult.files.single.bytes);
+
+//Create a new instance of the PdfTextExtractor.
+    PdfTextExtractor extractor = PdfTextExtractor(document);
+
+    print("Extracted text is :");
+
+//Extract all the text from the document.
+    String text = extractor.extractText(layoutText: true);
+
+    Processor processor = new Processor(text);
+    processor.processText();
+  }
+
+  Future<List<int>> _readDocumentData(String name) async {
+    final ByteData data = await rootBundle.load('assets/$name');
+    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
   }
 
   Future<void> pickPDF() async {
