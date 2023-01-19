@@ -1,6 +1,6 @@
 # Research Processing System
 
-A new Flutter project.
+A PDF proccessing flutter web application
 
 ## Get started
 
